@@ -162,13 +162,9 @@ function Home() {
         </motion.p>
         <button
           className="px-10 py-4 rounded-xl bg-white text-black font-semibold hover:scale-105 transition mt-12"
-          onClick={() => {
-            if (!userData) {
-              setOpenLogin(true);
-            } else {
-              navigate("/dashboard");
-            }
-          }}
+          onClick={() =>
+            userData ? navigate("/dashboard") : setOpenLogin(true)
+          }
         >
           {userData ? "Go To Dashboard" : " Get Started"}
         </button>

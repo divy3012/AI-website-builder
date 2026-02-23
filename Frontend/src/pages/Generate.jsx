@@ -35,7 +35,7 @@ function Generate() {
       navigate(`/editor/${result.data.websiteId}`);
     } catch (error) {
       setLoading(false);
-      setError(error.response.data.message || "something went wrong");
+      setError(error?.response?.data?.message || "something went wrong");
 
       console.log(error);
     }
