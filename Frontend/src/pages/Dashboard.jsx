@@ -14,15 +14,12 @@ function Dashboard() {
   const [error, setError] = useState("");
   const [copiedId, setCopiedId] = useState(null);
 
-  const handleDeploy = async () => {
+  const handleDeploy = async (id) => {
     try {
-      const result = await axios.get(
-        `${serverUrl}/api/website/deploy/${w._id}`,
-        {
-          withCredentials: true,
-        },
-      );
-      window.open(`${result.data.url}`, "_blank");
+      const result = await axios.get(`${serverUrl}/api/website/deploy/${id}`, {
+        withCredentials: true,
+      });
+      window.open(result.data.url, "_blank");
       setWebsites((prev) =>
         prev.map((w) =>
           w._id === id
