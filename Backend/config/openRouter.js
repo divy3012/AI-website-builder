@@ -21,7 +21,7 @@ export const generateResponse = async (prompt) => {
     }),
   });
   if (!res.ok) {
-    const err = awaitres.text();
+    const err = await res.text();
     throw new Error("Openrouter error" + err);
   }
   const data = await res.json();
