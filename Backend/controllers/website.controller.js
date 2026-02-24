@@ -152,6 +152,11 @@ import extractJson from "../utils/extractJson.js";
 
 export const generateWebsite = async (req, res) => {
   try {
+    console.log("===== DEBUG START =====");
+    console.log("USER:", req.user);
+    console.log("BODY:", req.body);
+    console.log("API KEY:", process.env.OPENAI_API_KEY);
+    console.log("OPENROUTER KEY:", process.env.OPENROUTER_API_KEY);
     const { prompt } = req.body;
     if (!prompt) {
       return res.status(400).json({ message: "Prompt is required" });
