@@ -295,6 +295,7 @@ export const changes = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
+    console.log("REQ USER:", req.user);
     const websites = await Website.find({ user: req.user._id });
     return res.status(200).json(websites);
   } catch (error) {
