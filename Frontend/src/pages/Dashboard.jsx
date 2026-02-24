@@ -16,9 +16,12 @@ function Dashboard() {
 
   const handleDeploy = async () => {
     try {
-      const result = await axios.get(`${serverUrl}/api/website/deploy/${id}`, {
-        withCredentials: true,
-      });
+      const result = await axios.get(
+        `${serverUrl}/api/website/deploy/${w._id}`,
+        {
+          withCredentials: true,
+        },
+      );
       window.open(`${result.data.url}`, "_blank");
       setWebsites((prev) =>
         prev.map((w) =>

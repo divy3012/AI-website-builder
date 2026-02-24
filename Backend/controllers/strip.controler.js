@@ -12,7 +12,7 @@ export const stripeWebHook = async (req, res) => {
     );
   } catch (error) {
     console.log(error);
-    return res.this.status(500).json({ message: "Webhook error" });
+    return res.status(500).json({ message: "Webhook error" });
   }
   if (event.type == "checkout.session.completed") {
     const session = event.data.object;
