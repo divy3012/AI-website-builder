@@ -33,21 +33,23 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    const handleGetAllWebsite = async () => {
-      setLoading(true);
-      try {
-        const result = await axios.get(`${serverUrl}/api/website/get-all`, {
-          withCredentials: true,
-        });
-        setWebsites(result.data);
-        setLoading(false);
-      } catch (error) {
-        setError(error.response.data.message);
-        setLoading(false);
-      }
-    };
+    if (userData) {
+      const handleGetAllWebsite = async () => {
+        setLoading(true);
+        try {
+          const result = await axios.get(`${serverUrl}/api/website/get-all`, {
+            withCredentials: true,
+          });
+          setWebsites(result.data);
+          setLoading(false);
+        } catch (error) {
+          setError(error.response.data.message);
+          setLoading(false);
+        }
+      };
 
-    handleGetAllWebsite();
+      handleGetAllWebsite();
+    }
   }, []);
 
   const handleCopy = async (site) => {
