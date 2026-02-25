@@ -316,7 +316,7 @@ export const deploy = async (req, res) => {
       website.slug =
         website.title
           .toLowerCase()
-          .replace(/[^a-z0-91]/g, "")
+          .replace(/[^a-z0-9]/g, "")
           .slice(0, 60) + website._id.toString().slice(-5);
     }
     website.deployed = true;
