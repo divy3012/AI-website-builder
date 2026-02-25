@@ -20,8 +20,9 @@ function Login({ open, onClose }) {
         },
         { withCredentials: true },
       );
-      dispatch(setUserData(data));
-      onClose();
+      localStorage.setItem("token", data.token);
+      dispatch(setUserData(data.user));
+      window.location.href = "/dashboard";
     } catch (error) {
       console.log(error);
     }
