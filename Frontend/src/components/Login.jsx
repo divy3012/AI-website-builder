@@ -24,9 +24,7 @@ function Login({ open, onClose }) {
         { withCredentials: true },
       );
 
-      localStorage.setItem("token", data.token);
-
-      dispatch(setUserData(data.user));
+      dispatch(setUserData(data));
 
       navigate("/dashboard"); // ✅ no page reload
     } catch (error) {
