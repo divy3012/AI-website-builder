@@ -17,8 +17,8 @@ function UseGetCurrentUser() {
         console.log(error);
       }
     };
-    getCurrentUser();
-  }, []);
+    return getCurrentUser();
+  }, [dispatch]);
 }
 
 export default UseGetCurrentUser;
