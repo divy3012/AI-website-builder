@@ -2,27 +2,29 @@ import axios from "axios";
 import { signInWithPopup } from "firebase/auth";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { serverUrl } from "../App.jsx";
 import { auth, provider } from "../firebase.js";
 import { setUserData } from "../redux/userSlice.js";
 
 function Login({ open, onClose }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleAuth = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      const { data } = await axios.post(
-        `${serverUrl}/api/auth/google`,
-        {
-          name: result.user.displayName,
-          email: result.user.email,
-          avatar: result.user.photoURL,
-        },
-        { withCredentials: true },
-      );
+
+      const { data } = await axios.post(`${serverUrl}/api/auth/google`, {
+        name: result.user.displayName,
+        email: result.user.email,
+        avatar: result.user.photoURL,
+      });
+
       localStorage.setItem("token", data.token);
+
       dispatch(setUserData(data.user));
-      window.location.href = "/dashboard";
+
+      navigate("/dashboard"); // ✅ no page reload
     } catch (error) {
       console.log(error);
     }
