@@ -165,14 +165,14 @@ export const generateWebsite = async (req, res) => {
         .status(400)
         .json({ message: "You have not enough credits to generate website" });
     }
-    const finalPrompt = masterPrompt.replace("USER_PROMPT", prompt);
+    const finalPrompt = masterPrompt.replace("{USER_PROMPT}", prompt);
     let raw = "";
     let parsed = null;
     for (let i = 0; i < 2 && !parsed; i++) {
       raw = await generateResponse(finalPrompt);
       parsed = await extractJson(raw);
       if (!parsed) {
-        raw = await generateResponse(finalPrompt + "/n/nRETURN ONLY RAW JSON.");
+        raw = await generateResponse(finalPrompt + "\n\nRETURN ONLY RAW JSON.");
         parsed = await extractJson(raw);
       }
     }
@@ -266,7 +266,7 @@ export const changes = async (req, res) => {
       parsed = await extractJson(raw);
       if (!parsed) {
         raw = await generateResponse(
-          updatePrompt + "/n/nRETURN ONLY RAW JSON.",
+          updatePrompt + "\n\nRETURN ONLY RAW JSON.",
         );
         parsed = await extractJson(raw);
       }
@@ -295,7 +295,6 @@ export const changes = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
-    console.log("REQ USER:", req.user);
     const websites = await Website.find({ user: req.user._id });
     return res.status(200).json(websites);
   } catch (error) {
