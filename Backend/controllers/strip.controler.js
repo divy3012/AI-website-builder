@@ -19,7 +19,10 @@ export const stripeWebHook = async (req, res) => {
     const userId = session.metadata.userId;
     const credits = Number(session.metadata.credits);
     const plan = session.metadata.plan;
-    await User.findByIdAndDelete(userId, { $inc: { credits } }, plan);
+    await User.findByIdAndDelete(userId, {
+      $inc: { credits: credits },
+      plan: plan,
+    });
   }
   return res.json({ received: true });
 };
