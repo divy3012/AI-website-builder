@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://genwebai-g8kt.onrender.com",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   }),
 );
