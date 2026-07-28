@@ -8,7 +8,7 @@ import LiveSite from "./pages/LiveSite.jsx";
 import Pricing from "./pages/Pricing.jsx";
 import WebsiteEditor from "./pages/WebsiteEditor.jsx";
 
-export const serverUrl = "https://genweb-backend.onrender.com";
+export const serverUrl = "https://ai-website-builder-vkcy.onrender.com";
 
 function App() {
   UseGetCurrentUser();
