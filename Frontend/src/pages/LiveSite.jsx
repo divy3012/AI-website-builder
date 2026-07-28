@@ -13,7 +13,6 @@ function LiveSite() {
       try {
         const result = await axios.get(
           `${serverUrl}/api/website/getslug/${id}`,
-          { withCredentials: true },
         );
         setHtml(result.data.latestCode);
       } catch (error) {
